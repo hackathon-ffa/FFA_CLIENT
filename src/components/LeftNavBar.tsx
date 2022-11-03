@@ -18,6 +18,12 @@ const LeftNavBar = () => {
       text: "휴가",
       url: "/vacation",
     },
+    {
+      filled: "images/filled_dashboard_icon.svg",
+      outline: "images/outline_dashboard_icon.svg",
+      text: "대시보드",
+      url: "/dashboard",
+    },
   ];
   const { pathname } = useLocation();
 
