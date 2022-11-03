@@ -56,8 +56,14 @@ const LeftNavBar = () => {
         <ModalContent>
           <h1>근무 유형을 선택해주세요</h1>
           <div>
-            <WorkType>출근</WorkType>
-            <WorkType>원격근무</WorkType>
+            <WorkType>
+              <img src={"images/business_icon.svg"} />
+              <p>출근</p>
+            </WorkType>
+            <WorkType>
+              <img src={"images/home_icon.svg"} />
+              <p>재택근무</p>
+            </WorkType>
           </div>
         </ModalContent>
       </Modal>
@@ -156,7 +162,7 @@ const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 50px;
   padding: 30px;
 
   & > h1 {
@@ -173,8 +179,35 @@ const ModalContent = styled.div`
 const WorkType = styled.div`
   width: 300px;
   height: 300px;
-  background-color: #a8b3db;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #6cdd83;
   border-radius: 20px;
+  cursor: pointer;
+
+  & > p {
+    color: #6cdd83;
+    font-size: 32px;
+    font-weight: 500;
+  }
+
+  & > img {
+    display: none;
+  }
+
+  &:hover {
+    background-color: #6cdd83;
+
+    & > p {
+      color: #fff;
+    }
+
+    & > img {
+      display: block;
+    }
+  }
 `;
 
 export default LeftNavBar;
