@@ -93,7 +93,7 @@ const SignUp = () => {
             }}
             id="combo-box-demo"
             disablePortal
-            renderInput={(params) => (
+            renderInput={(params: any) => (
               <TextField {...params} label="회사 찾기" variant="standard" />
             )}
           />
@@ -104,7 +104,7 @@ const SignUp = () => {
           </>
         ) : null}
 
-        <SignUpBtn >회원가입</SignUpBtn>
+        <SignUpBtn>회원가입</SignUpBtn>
       </SingUpWarpper>
     </Wrapper>
   );
