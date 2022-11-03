@@ -6,7 +6,6 @@ import { RecoilRoot } from "recoil";
 import VacationPage from "./pages/VacationPage";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
-import OtherSignUpChange from "./pages/OtherSignUpPage";
 import ManagementPage from "./pages/ManagementPage";
 
 const App = () => {
@@ -15,14 +14,12 @@ const App = () => {
       <GlobalStyle />
       <Router>
         <RecoilRoot>
-          <LeftNavBar/>
           <Routes>
             <Route path="/home" element={<HomePage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/login" element={<Login/>} />
-            <Route path="/signup" element={<SignUp/>} />
-            <Route path="/vacation" element={<VacationPage/>} />
-            <Route path="/othersignup" element = {<OtherSignUpChange/>}/>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/vacation" element={<VacationPage />} />
             <Route path="/management" element={<ManagementPage />} />
           </Routes>
         </RecoilRoot>
