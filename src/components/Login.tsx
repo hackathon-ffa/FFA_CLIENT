@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Login = () => {
@@ -11,7 +12,7 @@ const Login = () => {
         </div>
 
         <button>로그인</button>
-        <p>아직 계정이 없으신가요?</p>
+        <LinkSingup to="/signup">아직 계정이 없으신가요?</LinkSingup>
       </LoginWarpper>
     </Wrapper>
   );
@@ -75,13 +76,12 @@ const LoginWarpper = styled.form`
     color: white;
     font-size: 16px;
   }
-
-  & > p {
-    font-size: 13px;
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: -10px;
-  }
+`;
+const LinkSingup = styled(Link)`
+  font-size: 13px;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: -10px;
 `;
 const IdInput = styled.input`
   border-radius: 5px 5px 0px 0px;
