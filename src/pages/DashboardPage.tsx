@@ -14,14 +14,16 @@ const DashboardPage = () => {
   ];
 
   return (
-    <Wrapper>
+    <>
       <UserNavBar />
-      <DashboardTab />
-      <AverageWorkChart
-        label={array[currentTab].label}
-        data={[8, 9, 11, 9, 10]}
-      />
-    </Wrapper>
+      <Wrapper>
+        <DashboardTab />
+        <AverageWorkChart
+          label={array[currentTab].label}
+          data={[8, 9, 11, 9, 10]}
+        />
+      </Wrapper>
+    </>
   );
 };
 

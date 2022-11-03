@@ -32,35 +32,37 @@ const HomePage = () => {
   }, [weekWorkTime]);
 
   return (
-    <Wrapper>
+    <>
       <UserNavBar />
-      <h1>아직 출근 전이에요</h1>
-      <RemainingWrapper style={{ marginBottom: 100 }}>
-        <h2>퇴근까지 남은 시간 ({formatTime(remainingTime)})</h2>
-        <Line
-          strokeColor={"#6cdd83"}
-          style={{ width: "100%", height: "20px", borderRadius: "20px" }}
-        />
-        <TextWrapper>
-          <span>출근</span>
-          <span>퇴근</span>
-        </TextWrapper>
-      </RemainingWrapper>
-      <RemainingWrapper>
-        <h2>
-          이번주에는 <b>{weekWorkTime}시간</b> 일했어요
-        </h2>
-        <Line
-          percent={(weekWorkTime / 40) * 100}
-          strokeColor={"#6cdd83"}
-          style={{ width: "100%", height: "20px", borderRadius: "20px" }}
-        />
-        <TextWrapper>
-          <span>0시간</span>
-          <span>40시간</span>
-        </TextWrapper>
-      </RemainingWrapper>
-    </Wrapper>
+      <Wrapper>
+        <h1>아직 출근 전이에요</h1>
+        <RemainingWrapper style={{ marginBottom: 100 }}>
+          <h2>퇴근까지 남은 시간 ({formatTime(remainingTime)})</h2>
+          <Line
+            strokeColor={"#6cdd83"}
+            style={{ width: "100%", height: "20px", borderRadius: "20px" }}
+          />
+          <TextWrapper>
+            <span>출근</span>
+            <span>퇴근</span>
+          </TextWrapper>
+        </RemainingWrapper>
+        <RemainingWrapper>
+          <h2>
+            이번주에는 <b>{weekWorkTime}시간</b> 일했어요
+          </h2>
+          <Line
+            percent={(weekWorkTime / 40) * 100}
+            strokeColor={"#6cdd83"}
+            style={{ width: "100%", height: "20px", borderRadius: "20px" }}
+          />
+          <TextWrapper>
+            <span>0시간</span>
+            <span>40시간</span>
+          </TextWrapper>
+        </RemainingWrapper>
+      </Wrapper>
+    </>
   );
 };
 
