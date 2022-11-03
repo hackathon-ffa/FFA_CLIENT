@@ -1,11 +1,14 @@
 import LeftNavBar from "./components/LeftNavBar";
 import GlobalStyle from "./styles/global";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const App = () => {
   return (
     <>
       <GlobalStyle />
-      <LeftNavBar />
+      <Router>
+        <LeftNavBar />
+      </Router>
     </>
   );
 };
