@@ -1,4 +1,3 @@
-import LeftNavBar from "./components/LeftNavBar";
 import GlobalStyle from "./styles/global";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
@@ -8,6 +7,7 @@ import VacationPage from "./pages/VacationPage";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import OtherSignUpChange from "./pages/OtherSignUpPage";
+import ManagementPage from "./pages/ManagementPage";
 
 const App = () => {
   return (
@@ -23,6 +23,7 @@ const App = () => {
             <Route path="/signup" element={<SignUp/>} />
             <Route path="/vacation" element={<VacationPage/>} />
             <Route path="/othersignup" element = {<OtherSignUpChange/>}/>
+            <Route path="/management" element={<ManagementPage />} />
           </Routes>
         </RecoilRoot>
       </Router>
