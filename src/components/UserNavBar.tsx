@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Modal from "./_elements/Modal";
 
-const LeftNavBar = () => {
+const UserNavBar = () => {
   const [isShowModal, setIsShowModal] = useState(false);
   const MENU_ITEM = [
     {
@@ -216,4 +216,4 @@ const WorkType = styled.div`
   }
 `;
 
-export default LeftNavBar;
+export default UserNavBar;
