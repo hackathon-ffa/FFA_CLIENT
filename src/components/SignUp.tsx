@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Stack from "@mui/material/Stack";
-import { cp } from "fs/promises";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 type SignUpType = {
   employee: string;
@@ -17,13 +18,10 @@ type SignUpType = {
 
 const SignUp = () => {
   const companyData = [
-    { name: "회사1", id: 0 },
-    { name: "회사2", id: 1 },
-    { name: "회사3", id: 2 },
-    { name: "회사4", id: 3 },
-    { name: "회사5", id: 4 },
-    { name: "회사6", id: 5 },
+    { name: "마이다스인", id: 0 },
+    { name: "마이다스아이티", id: 1 },
   ];
+  const navigate = useNavigate();
 
   interface companyType {
     name: string;
@@ -31,7 +29,7 @@ const SignUp = () => {
   }
 
   const [userData, setUserData] = useState<SignUpType>({
-    employee: "employee",
+    employee: "user",
     userId: "",
     name: "",
     password: "",
@@ -44,9 +42,22 @@ const SignUp = () => {
     setUserData({ ...userData, [props]: event.target.value });
   };
 
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
+  const handleSignup = () => {
+    axios
+      .post("http://192.168.101.50:8080/signup", {
+        userId: userData.userId,
+        companyName: userData.company,
+        userRight: userData.employee,
+        userName: userData.name,
+        password: userData.password,
+      })
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
 
   const defaultProps = {
     options: companyData,
@@ -57,21 +68,21 @@ const SignUp = () => {
       <Logo>FFA</Logo>
       <div>
         <ChooseRole
-          value="employee"
+          value="user"
           style={{
-            backgroundColor: userData.employee === "employee" ? "#000" : "#fff",
-            color: userData.employee === "employee" ? "#fff" : "#000",
+            backgroundColor: userData.employee === "user" ? "#000" : "#fff",
+            color: userData.employee === "user" ? "#fff" : "#000",
           }}
-          onClick={handleInputChange("employee")}
+          onClick={handleInputChange("user")}
         >
           직원 회원가입
         </ChooseRole>
         <ChooseRole
           value="manager"
           style={{
-            backgroundColor: userData.employee === "employee" ? "#fff" : "#000",
+            backgroundColor: userData.employee === "user" ? "#fff" : "#000",
           }}
-          onClick={handleInputChange("employee")}
+          onClick={handleInputChange("manager")}
         >
           관리자 회원가입
         </ChooseRole>
@@ -80,13 +91,13 @@ const SignUp = () => {
         <InputInfo>이름</InputInfo>
         <input onChange={handleInputChange("name")} />
         <InputInfo>비밀번호</InputInfo>
-        <input onChange={handleInputChange("password")} />
+        <input type={"password"} onChange={handleInputChange("password")} />
         <InputInfo>비밀번호 확인</InputInfo>
-        <input onChange={handleInputChange("passwordCheck")} />
+        <input type="password" onChange={handleInputChange("passwordCheck")} />
         <InputInfo>아이디</InputInfo>
         <input onChange={handleInputChange("userId")} />
 
-        {userData.employee === "employee" ? (
+        {userData.employee === "user" ? (
           <>
             <InputInfo>회사 선택</InputInfo>
             <Stack
@@ -143,7 +154,7 @@ const SignUp = () => {
           </>
         )}
 
-        <SignUpBtn>회원가입</SignUpBtn>
+        <SignUpBtn onClick={handleSignup}>회원가입</SignUpBtn>
       </SingUpWarpper>
     </Wrapper>
   );

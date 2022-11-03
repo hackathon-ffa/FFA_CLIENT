@@ -1,16 +1,46 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Login = () => {
+  const [id, setId] = useState("");
+  const [pw, setPw] = useState("");
+  const navigate = useNavigate();
+
+  const onSubmit = (e: any) => {
+    e.preventDefault();
+
+    axios
+      .post("http://192.168.101.50:8080/login", {
+        userId: id,
+        password: pw,
+      })
+      .then(() => {
+        navigate("/home");
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
+
   return (
     <Wrapper>
       <Logo>FFA</Logo>
-      <LoginWarpper>
+      <LoginWarpper onSubmit={onSubmit}>
         <div>
-          <IdInput placeholder="아이디" />
-          <PwInput type="password" placeholder="비밀번호" />
+          <IdInput
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+            placeholder="아이디"
+          />
+          <PwInput
+            value={pw}
+            onChange={(e) => setPw(e.target.value)}
+            type="password"
+            placeholder="비밀번호"
+          />
         </div>
-
         <button>로그인</button>
         <LinkSingup to="/signup">아직 계정이 없으신가요?</LinkSingup>
       </LoginWarpper>

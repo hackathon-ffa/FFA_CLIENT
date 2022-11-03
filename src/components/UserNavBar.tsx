@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import styled from "styled-components";
+import { isWorkingAtom } from "../atoms";
 import Modal from "./_elements/Modal";
 
 const UserNavBar = () => {
   const [isShowModal, setIsShowModal] = useState(false);
+  const [isWorking, setIsWorking] = useRecoilState(isWorkingAtom);
   const MENU_ITEM = [
     {
       filled: "images/filled_home_icon.svg",
@@ -41,7 +44,12 @@ const UserNavBar = () => {
         <div />
         <p>박성현</p>
       </ProfileWrapper>
-      <AttendanceBtn onClick={openModal}>출근하기</AttendanceBtn>
+      {isWorking ? (
+        <AnotherBtn>근무 중</AnotherBtn>
+      ) : (
+        <AttendanceBtn onClick={openModal}>출근하기</AttendanceBtn>
+      )}
+
       <MenuList>
         {MENU_ITEM.map((menu) => (
           <MenuItem key={menu.text} to={menu.url}>
@@ -62,11 +70,21 @@ const UserNavBar = () => {
         <ModalContent>
           <h1>근무 유형을 선택해주세요</h1>
           <div>
-            <WorkType>
+            <WorkType
+              onClick={() => {
+                setIsWorking(true);
+                setIsShowModal(false);
+              }}
+            >
               <img src={"images/business_icon.svg"} />
               <p>출근</p>
             </WorkType>
-            <WorkType>
+            <WorkType
+              onClick={() => {
+                setIsWorking(true);
+                setIsShowModal(false);
+              }}
+            >
               <img src={"images/home_icon.svg"} />
               <p>재택근무</p>
             </WorkType>
@@ -114,6 +132,10 @@ const AttendanceBtn = styled.button`
   background-color: #6cdd83;
   color: white;
   margin-bottom: 20px;
+`;
+
+const AnotherBtn = styled(AttendanceBtn)`
+  background-color: #ddd;
 `;
 
 const MenuList = styled.div`

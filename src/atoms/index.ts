@@ -9,3 +9,8 @@ export const selectedFiltersAtom = atom<string[]>({
   key: "selectedFiltersAtom",
   default: [],
 });
+
+export const isWorkingAtom = atom({
+  key: "isWorkingAtom",
+  default: false,
+});

@@ -1,25 +1,31 @@
 import { Line } from "rc-progress";
 import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
+import { isWorkingAtom } from "../atoms";
 import UserNavBar from "../components/UserNavBar";
 
 const HomePage = () => {
   const [remainingTime, setRemainingTime] = useState(9 * 60 * 60);
   const [weekWorkTime, setWeekWorkTime] = useState(0);
+  const isWorking = useRecoilValue(isWorkingAtom);
 
   const formatTime = (seconds: number) => {
     return new Date(seconds * 1000).toISOString().slice(11, 19);
   };
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setRemainingTime((t) => t - 1);
-    }, 1000);
-    if (remainingTime === 0) {
-      clearInterval(id);
+    if (isWorking) {
+      const id = setInterval(() => {
+        setRemainingTime((t) => t - 1);
+      }, 1000);
+      if (remainingTime <= 0) {
+        clearInterval(id);
+        setRemainingTime(0);
+      }
+      return () => clearInterval(id);
     }
-    return () => clearInterval(id);
-  }, [remainingTime]);
+  }, [remainingTime, isWorking]);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -35,10 +41,16 @@ const HomePage = () => {
     <>
       <UserNavBar />
       <Wrapper>
-        <h1>아직 출근 전이에요</h1>
+        {isWorking ? (
+          <h1>열심히 일하는 중이에요</h1>
+        ) : (
+          <h1>아직 출근 전이에요</h1>
+        )}
+
         <RemainingWrapper style={{ marginBottom: 100 }}>
           <h2>퇴근까지 남은 시간 ({formatTime(remainingTime)})</h2>
           <Line
+            percent={((9 * 3600 - remainingTime) / (9 * 3600)) * 100}
             strokeColor={"#6cdd83"}
             style={{ width: "100%", height: "20px", borderRadius: "20px" }}
           />
