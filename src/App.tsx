@@ -17,9 +17,9 @@ const App = () => {
           <Routes>
             <Route path="/home" element={<HomePage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/vacation" element={<VacationPage />} />
+            <Route path="/" element={<Login/>} />
+            <Route path="/signup" element={<SignUp/>} />
+            <Route path="/vacation" element={<VacationPage/>} />
             <Route path="/management" element={<ManagementPage />} />
           </Routes>
         </RecoilRoot>

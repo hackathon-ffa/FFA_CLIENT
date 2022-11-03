@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
+import UserNavBar from "../components/UserNavBar";
 
 const VacationPage = () => {
   const [startDate, setStartDate] = useState("");
@@ -9,6 +10,7 @@ const VacationPage = () => {
 
   return (
     <Wrapper>
+      <UserNavBar/>
       <h1>휴가 신청서</h1>
       <VacationFormWrapper>
         <Title>
