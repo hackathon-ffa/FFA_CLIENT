@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { currentTabAtom } from "../atoms";
 import AverageWorkChart from "../components/AverageWorkChart";
 import DashboardTab from "../components/DashboardTab";
+import LeftNavBar from "../components/LeftNavBar";
 
 const DashboardPage = () => {
   const currentTab = useRecoilValue(currentTabAtom);
@@ -14,6 +15,7 @@ const DashboardPage = () => {
 
   return (
     <Wrapper>
+      <LeftNavBar />
       <DashboardTab />
       <AverageWorkChart
         label={array[currentTab].label}

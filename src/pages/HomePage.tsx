@@ -1,6 +1,7 @@
 import { Line } from "rc-progress";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import LeftNavBar from "../components/LeftNavBar";
 
 const HomePage = () => {
   const [remainingTime, setRemainingTime] = useState(9 * 60 * 60);
@@ -32,6 +33,7 @@ const HomePage = () => {
 
   return (
     <Wrapper>
+      <LeftNavBar />
       <h1>아직 출근 전이에요</h1>
       <RemainingWrapper style={{ marginBottom: 100 }}>
         <h2>퇴근까지 남은 시간 ({formatTime(remainingTime)})</h2>
