@@ -1,39 +1,16 @@
-import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import Modal from "./_elements/Modal";
 
-const LeftNavBar = () => {
-  const [isShowModal, setIsShowModal] = useState(false);
+const AdminNavBar = () => {
   const MENU_ITEM = [
     {
-      filled: "images/filled_home_icon.svg",
-      outline: "images/outline_home_icon.svg",
-      text: "홈",
-      url: "/home",
-    },
-    {
-      filled: "images/filled_airplane_icon.svg",
-      outline: "images/outline_airplane_icon.svg",
-      text: "휴가",
-      url: "/vacation",
-    },
-    {
-      filled: "images/filled_dashboard_icon.svg",
-      outline: "images/outline_dashboard_icon.svg",
-      text: "대시보드",
-      url: "/dashboard",
+      filled: "images/filled_people_icon.svg",
+      outline: "images/outline_people_icon.svg",
+      text: "팀원 관리",
+      url: "/management",
     },
   ];
   const { pathname } = useLocation();
-
-  const openModal = () => {
-    setIsShowModal(true);
-  };
-
-  const closeModal = () => {
-    setIsShowModal(false);
-  };
 
   return (
     <Wrapper>
@@ -41,7 +18,6 @@ const LeftNavBar = () => {
         <div />
         <p>박성현</p>
       </ProfileWrapper>
-      <AttendanceBtn onClick={openModal}>출근하기</AttendanceBtn>
       <MenuList>
         {MENU_ITEM.map((menu) => (
           <MenuItem key={menu.text} to={menu.url}>
@@ -58,21 +34,6 @@ const LeftNavBar = () => {
         </ImageBox>
         <p>마이다스인</p>
       </CompanyWrapper>
-      <Modal isShowModal={isShowModal} closeIcon={closeModal}>
-        <ModalContent>
-          <h1>근무 유형을 선택해주세요</h1>
-          <div>
-            <WorkType>
-              <img src={"images/business_icon.svg"} />
-              <p>출근</p>
-            </WorkType>
-            <WorkType>
-              <img src={"images/home_icon.svg"} />
-              <p>재택근무</p>
-            </WorkType>
-          </div>
-        </ModalContent>
-      </Modal>
     </Wrapper>
   );
 };
@@ -216,4 +177,4 @@ const WorkType = styled.div`
   }
 `;
 
-export default LeftNavBar;
+export default AdminNavBar;
